@@ -32,10 +32,15 @@
   };
 
   Checkbox.prototype.toggle = function() {
-    if (this.el.hasAttribute('checked'))
+
+    var isChecked = this.el.getAttribute('aria-checked');
+    if (isChecked === 'true') {
       this.el.removeAttribute('checked');
-    else
+      this.el.setAttribute('aria-checked', 'false');
+    } else {
       this.el.setAttribute('checked', '');
+      this.el.setAttribute('aria-checked', 'true');
+    }
   };
 
   var checkboxes = slice(document.querySelectorAll('.checkbox'));

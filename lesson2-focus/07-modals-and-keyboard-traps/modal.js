@@ -40,19 +40,24 @@ function openModal() {
   function trapTabKey(e) {
     // Check for TAB key press
     if (e.keyCode === 9) {
-
+      console.log(lastTabStop);
       // SHIFT + TAB
       if (e.shiftKey) {
-
+        e.preventDefault();
+        lastTabStop.focus();
       // TAB
       } else {
-
+        if (document.activeElement === lastTabStop) {
+          console.log(lastTabStop);
+          e.preventDefault();
+          lastTabStop.focus();
+        }
       }
     }
 
     // ESCAPE
     if (e.keyCode === 27) {
-
+      closeModal();
     }
   }
 }
